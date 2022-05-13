@@ -10,6 +10,7 @@ public abstract class Creature
 
     //these two variables will be the same for all creatures of the same subclass.
     //these two variables will be set by the subclass.
+
     protected double mutationChance; //chance of mutation between generations
     protected double mutationStrength; //strength of mutation when it occurs.
 
@@ -22,4 +23,6 @@ public abstract class Creature
 
     protected Gender getGender()
     {return gender;}
+
+    protected abstract Creature copy();
 }
