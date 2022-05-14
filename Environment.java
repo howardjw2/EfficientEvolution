@@ -13,6 +13,8 @@ public class Environment
     int time;
     ArrayList<ArrayList<Creature>> history;
     ArrayList<Creature> creatures;
+    int lastUsedId = -1; // determines what the next creature's id will be
+                         //     ensures all ids are unique
 
     public Environment()
     {
@@ -47,9 +49,12 @@ public class Environment
      */
     public void populate(Creature sample, int num)
     {
+        Creature tempCreature;
         for(int i = 0; i < num; i++)
         {
-            creatures.add(sample.copy());
+            tempCreature = sample.copy();
+            tempCreature.setId(++lastUsedId); //increments lastUsedId
+            creatures.add(tempCreature);
         }
     }
 
