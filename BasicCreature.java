@@ -1,12 +1,12 @@
 public class BasicCreature extends Creature
 {
-    public BasicCreature(Gender inGender)
+    public BasicCreature(int inId, Gender inGender)
     {
-        super(inGender, 10, 10); //super(gender, mutationChance, mutationStrength)
+        super(inId, 8, inGender, 10, 10); //super(id, ageLimit, gender, mutationChance, mutationStrength)
     }
 
     protected Creature copy()
     {
-        return new BasicCreature(new Gender(gender.toString()));
+        return new BasicCreature(id, new Gender(gender.toString()));
     }
 }

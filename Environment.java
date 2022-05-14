@@ -10,18 +10,31 @@ import java.util.ArrayList;
 
 public class Environment
 {
+    int time;
     ArrayList<ArrayList<Creature>> history;
     ArrayList<Creature> creatures;
 
     public Environment()
     {
+        time = 0;
         history = new ArrayList<ArrayList<Creature>>();
         creatures = new ArrayList<Creature>();
     }
 
     public void passTime()
     {
-        
+        if(time == 0)
+        {
+            addToHistory();
+        }
+        for(int i = 0; i < creatures.size(); i++)
+        {
+            if(!creatures.get(i).passTime()) //if creature dies, remove it from list
+            {
+                creatures.remove(i);
+            }
+        }
+        addToHistory();
     }
 
     /**
@@ -37,6 +50,29 @@ public class Environment
         for(int i = 0; i < num; i++)
         {
             creatures.add(sample.copy());
+        }
+    }
+
+    public void addToHistory()
+    {
+        ArrayList<Creature> tempList = new ArrayList<Creature>();
+        for(int i = 0; i < creatures.size(); i++)
+        {
+            tempList.add(creatures.get(i).copy());
+        }
+        history.add(tempList);
+    }
+
+    public void printHistory()
+    {
+        for(int i = 0; i < history.size(); i++)
+        {
+            System.out.println("--------------------------------");
+            System.out.println("TIME: " + i);
+            for(int ii = 0; ii < history.get(i).size(); ii++)
+            {
+                System.out.println(history.get(i).get(ii));
+            }
         }
     }
 }
