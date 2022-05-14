@@ -50,6 +50,9 @@ public abstract class Creature
     protected Gender getGender()
     {return gender;}
 
+    protected void setId(int inId)
+    {id = inId;}
+
     protected abstract Creature copy();
 
     public String toString()
