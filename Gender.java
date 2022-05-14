@@ -29,11 +29,11 @@ public class Gender
 
     private boolean isNeither()
     {
-        return genderString == "isNeither";
+        return genderString == "neither";
     }
 
-    //private String toString()
-    //{
-    //    return genderString;
-    //}
+    public String toString()
+    {
+        return genderString;
+    }
 }
