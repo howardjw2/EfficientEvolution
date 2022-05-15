@@ -15,6 +15,38 @@ public abstract class TraitList
         traits = new ArrayList<Trait>();
     }
 
+    //sets modifiers of all traits to zero
+    protected void emptyTraits()
+    {
+        for(int i = 0; i < traits.size(); i++)
+        {
+            traits.get(i).setModifier(0);
+        }
+    }
+
+    //combines two TraitList objects
+    protected void addToTraits(TraitList inTraitList)
+    {
+        ArrayList<Trait> inTraits = inTraitList.getTraits();
+        for(int i = 0; i < inTraits.size(); i++)
+        {
+            traits.get(i).addToModifier(inTraits.get(i).getModifier());
+        }
+    }
+
+    /**
+     * @param int num. What number to divide traits by
+     */
+    protected void divideTraitsBy(int num)
+    {
+        for(int i = 0; i < traits.size(); i++)
+        {
+            traits.get(i).divideModifierBy(num);
+        }
+    }
+
     protected ArrayList<Trait> getTraits()
-    {return traits;}
+    {
+        return traits;
+    }
 }

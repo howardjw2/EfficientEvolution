@@ -6,6 +6,10 @@ public class Test
         Environment world = new Environment();
         world.populate(trialCreature, 3);
         world.passTime();
-        world.printHistory();
+        //world.printHistory();
+
+        Creature whoCares = new BasicCreature(72, 6, new Gender("female"));
+        Creature buzzOff = new BasicCreature(85, 5, new Gender("male"));
+        System.out.println(Creature.reproduce(new Creature[]{whoCares, buzzOff}));
     }
 }
