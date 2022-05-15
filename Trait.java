@@ -15,9 +15,24 @@ public class Trait
         modifier = inModifier;
     }
 
-    private String getType()
+    public void addToModifier(double num)
+    {
+        modifier += num;
+    }
+
+    public void divideModifierBy(double num)
+    {
+        modifier /= num;
+    }
+
+    public void setModifier(double inModifier)
+    {
+        modifier = inModifier;
+    }
+
+    public String getType()
     {return type;}
 
-    private double getModifier()
+    public double getModifier()
     {return modifier;}
 }

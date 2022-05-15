@@ -52,7 +52,7 @@ public class Environment
         Creature tempCreature;
         for(int i = 0; i < num; i++)
         {
-            tempCreature = sample.copy();
+            tempCreature = sample.copy(true); //copied with age
             tempCreature.setId(++lastUsedId); //increments lastUsedId
             creatures.add(tempCreature);
         }
