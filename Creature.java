@@ -74,9 +74,11 @@ public abstract class Creature
      *      mixing their genes together evenly. Later on, genes may
      *      be mixed unevenly. All creatures must be of the same type
      */
-    protected static Creature reproduce(Creature[] parents)
+    protected static Creature reproduce(Creature[] parents, int inId)
     {
         Creature child = parents[0].copy();
+
+        child.setId(inId);
 
         Gender[] list = child.getGenderList();
         child.setGender(list[(int)(Math.random()*list.length)]); //picks a random item from possible gender list
