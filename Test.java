@@ -10,6 +10,6 @@ public class Test
 
         Creature whoCares = new BasicCreature(72, 6, new Gender("female"));
         Creature buzzOff = new BasicCreature(85, 5, new Gender("male"));
-        System.out.println(Creature.reproduce(new Creature[]{whoCares, buzzOff}, 22));
+        System.out.println(Creature.reproduce(new Creature[]{whoCares, buzzOff}, 22).getTraits());
     }
 }

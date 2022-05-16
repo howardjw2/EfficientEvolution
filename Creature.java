@@ -89,7 +89,13 @@ public abstract class Creature
             child.getTraits().addToTraits(parents[i].getTraits());
         }
         child.getTraits().divideTraitsBy(parents.length);
+        child.mutate();
         return child;
+    }
+
+    protected void mutate()
+    {
+        traits.mutate(mutationStrength);
     }
 
     protected abstract Creature copy();

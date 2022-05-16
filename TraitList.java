@@ -15,6 +15,14 @@ public abstract class TraitList
         traits = new ArrayList<Trait>();
     }
 
+    protected void mutate(double mutationStrength)
+    {
+        for(int i = 0; i < traits.size(); i++)
+        {
+            traits.get(i).addToModifier(Math.random() * mutationStrength - (mutationStrength / 2));
+        }
+    }
+
     //sets modifiers of all traits to zero
     protected void emptyTraits()
     {
@@ -48,5 +56,15 @@ public abstract class TraitList
     protected ArrayList<Trait> getTraits()
     {
         return traits;
+    }
+
+    public String toString()
+    {
+        String returnString = "";
+        for(int i = 0; i < traits.size(); i++)
+        {
+            returnString += traits.get(i) + "\n";
+        }
+        return returnString;
     }
 }
