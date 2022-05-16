@@ -35,4 +35,9 @@ public class Trait
 
     public double getModifier()
     {return modifier;}
+
+    public String toString()
+    {
+        return "" + type + ": " + modifier;
+    }
 }
