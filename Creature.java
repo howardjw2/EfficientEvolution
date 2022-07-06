@@ -14,12 +14,16 @@ public abstract class Creature
 
     //these two variables will be the same for all creatures of the same subclass
     //these two variables will be set by the subclass
-    protected double mutationChance; //chance of mutation between generations
+    protected double mutationChance; //chance of mutation between generations, applied to each trait
     protected double mutationStrength; //strength of mutation when it occurs
+
+    protected double maxHeritageDifference; //the most difference in sway each parent has on the child
 
     protected TraitList traits;
 
-    public Creature(int inId, int inAgeLimit, Gender inGender, Gender[] inGenderList, double inMChance, double inMStrength, TraitList inTraits)
+    public Creature(int inId, int inAgeLimit, Gender inGender,
+        Gender[] inGenderList, double inMChance, double inMStrength,
+        double inHDifference, TraitList inTraits)
     {
         id = inId;
         age = 0;
@@ -28,10 +32,13 @@ public abstract class Creature
         genderList = inGenderList;
         mutationChance = inMChance;
         mutationStrength = inMStrength;
+        maxHeritageDifference = inHDifference;
         traits = inTraits;
     }
 
-    public Creature(int inId, int inAge, int inAgeLimit, Gender inGender, Gender[] genderList, double inMChance, double inMStrength, TraitList inTraits)
+    public Creature(int inId, int inAge, int inAgeLimit, Gender inGender,
+        Gender[] genderList, double inMChance, double inMStrength,
+        double inHDifference, TraitList inTraits)
     {
         id = inId;
         age = inAge;
@@ -63,6 +70,12 @@ public abstract class Creature
     protected TraitList getTraits()
     {return traits;}
 
+    protected double getMutationChance()
+    {return mutationChance;}
+
+    protected double getMaxHeritageDifference()
+    {return maxHeritageDifference;}
+
     protected void setId(int inId)
     {id = inId;}
 
@@ -82,14 +95,38 @@ public abstract class Creature
 
         Gender[] list = child.getGenderList();
         child.setGender(list[(int)(Math.random()*list.length)]); //picks a random item from possible gender list
+        double weightMultiple;
 
+
+        double[] parentsWeights = new double[parents.length];
+        double weightSum = 0;
+        for(int i = 0; i < parents.length; i++)
+        {
+            parentsWeights[i] = (100 / parents.length) + ((Math.random() * child.getMaxHeritageDifference() * 2)
+                - (child.getMaxHeritageDifference()));
+            weightSum += parentsWeights[i];
+            System.out.println(parentsWeights[i]);
+        }
+
+        weightMultiple = 100 / weightSum;
+        System.out.println();
+
+        for(int i = 0; i < parents.length; i++)
+        {
+            parentsWeights[i] = parentsWeights[i] * weightMultiple;
+            System.out.println(parentsWeights[i]);
+        }
+
+        //parentsWeights[parents.length-1] = 100 - weightSum;
+        
         child.getTraits().emptyTraits();
         for(int i = 0; i < parents.length; i++)
         {
             child.getTraits().addToTraits(parents[i].getTraits());
         }
         child.getTraits().divideTraitsBy(parents.length);
-        child.mutate();
+        if((Math.random()*100) < child.getMutationChance())
+            child.mutate();
         return child;
     }
 

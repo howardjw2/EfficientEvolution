@@ -2,12 +2,12 @@ public class BasicCreature extends Creature
 {
     public BasicCreature(int inId, Gender inGender)
     {
-        super(inId, 8, inGender, new Gender[]{new Gender("male"), new Gender("female")}, 10, 10, new BasicTraitList());
+        super(inId, 8, inGender, new Gender[]{new Gender("male"), new Gender("female")}, 10, 10, 10, new BasicTraitList());
     }
 
     public BasicCreature(int inId, int inAge, Gender inGender)
     {
-        super(inId, inAge, 8, inGender, new Gender[]{new Gender("male"), new Gender("female")}, 10, 10, new BasicTraitList());
+        super(inId, inAge, 8, inGender, new Gender[]{new Gender("male"), new Gender("female")}, 10, 10, 10, new BasicTraitList());
     }
 
     protected Creature copy()
